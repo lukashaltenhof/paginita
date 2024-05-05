@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo Extremo Sur</title>
+    <style>
+        
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#quienes-somos">¿Quiénes somos?</a></li>
+            <li><a href="#nuestros-servicios">Nuestros servicios</a></li>
+            <li><a href="#consulta-clima">Consulta el Clima</a></li>
+            <li><a href="#contactanos">Contáctanos</a></li>
+        </ul>
+
+        <body>
+
+            <nav>
+                <a href="#quienes-somos">¿Quiénes somos?</a>
+                <a href="#nuestros-servicios">Nuestros servicios</a>
+                <a href="#ubicacion">Ubicación</a>
+            </nav>
+
+            <section id="quienes-somos">
+                <div class="container">
+                    <h2>¿Quiénes somos?</h2>
+                    <p>Somos un grupo de entusiastas del turismo que amamos explorar la naturaleza salvaje de Punta
+                        Arenas a caballo y a pie. Nuestra pasión por el aire libre nos lleva a ofrecer experiencias
+                        únicas a nuestros clientes.</p>
+                </div>
+            </section>
+
+            <section id="nuestros-servicios">
+                <div class="container">
+                    <h2>Nuestros servicios</h2>
+                    <div class="servicio">
+                        <h3>Caminata al Monte Tarn</h3>
+                        <p><strong>Precio por persona:</strong> $50</p>
+                        <p>Disfruta de una caminata emocionante hasta la cima del Monte Tarn, donde serás recompensado
+                            con vistas espectaculares de la región. Esta excursión incluye guías expertos y transporte
+                            de ida y vuelta desde tu alojamiento.</p>
+                    </div>
+                    <div class="servicio">
+                        <h3>Caminata a Parrillar</h3>
+                        <p><strong>Precio por persona:</strong> $60</p>
+                        <p>Embárcate en una aventura inolvidable a través de los senderos del Parrillar, rodeado de una
+                            exuberante vegetación y paisajes impresionantes. Esta caminata te lleva a lugares fuera de
+                            lo común y te permite conectarte plenamente con la naturaleza.</p>
+                    </div>
+                    <div class="servicio">
+                        <h3>Caminata a Mirador Zapador Austral</h3>
+                        <p><strong>Precio por persona:</strong> $70</p>
+                        <p>Descubre el encanto del Mirador Zapador Austral mientras exploras sus senderos panorámicos y
+                            observas la majestuosidad de la naturaleza circundante. Esta caminata te ofrece una
+                            experiencia única llena de belleza y aventura.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ubicacion">
+                <div class="container">
+                    <h2>Ubicación</h2>
+
+                </div>
+            </section>
+            <section id="ubicacion">
+                <div class="container">
+                    <h2>¿Dónde estamos?</h2>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.000298723163!2d-70.91644988573853!3d-53.15086739752951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961ca4a52db90325%3A0xf36f5486d1c15c15!2sPunta%20Arenas%2C%20Magallanes%20Region%2C%20Chile!5e0!3m2!1sen!2sus!4v1620646402180!5m2!1sen!2sus"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <section id="consulta-clima">
+                <h2>Consulta el Clima</h2>
+                <div id="weather"></div>
+
+            </section>
+
+            <section id="contactanos">
+                <div class="container">
+                    <h2>Contáctanos</h2>
+                    <form id="contact-form">
+                        <div>
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+            
+                        <div>
+                            <label for="celular">Celular:</label>
+                            <input type="text" id="celular" name="celular" required>
+                        </div>
+            
+                        <div>
+                            <label for="email">Email:</label>
+                            <input type="text" id="email" name="email" required>
+                        </div>
+            
+                        <div>
+                            <label for="pais">País:</label>
+                            <input type="text" id="pais" name="pais">
+                        </div>
+            
+                        <div>
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" id="ciudad" name="ciudad">
+                        </div>
+            
+                        <div>
+                            <label for="consulta">Consulta:</label>
+                            <textarea id="consulta" name="consulta" required></textarea>
+                        </div>
+            
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </section>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Punta%20Arenas&lang=es&appid=' + apiKey;
+                $(document).ready(function () {
+                    $('#contact-form').submit(function (e) {
+                        e.preventDefault();
+
+                        var nombre = $('#nombre').val();
+                        var celular = $('#celular').val();
+                        var email = $('#email').val();
+                        var consulta = $('#consulta').val();
+
+                        if (nombre === '' || celular === '' || email === '' || consulta === '') {
+                            alert('Por favor completa todos los campos obligatorios.');
+                            return;
+                        }
+
+                        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailPattern.test(email)) {
+                            alert('Por favor ingresa un email válido.');
+                            return;
+                        }
+
+                        // Aquí puedes agregar código para enviar el formulario
+
+                        alert('¡Formulario enviado con éxito!');
+                    });
+                });
+            </script>
+
+        </body>
+
+</html>
